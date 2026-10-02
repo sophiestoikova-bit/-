@@ -1,0 +1,8 @@
+from .stats import char_stats, word_cout
+
+def main():
+    t = "Привет мир! Это мой первый пакет."
+    print("Слов:", word_cout(t), "| Статистика:", char_stats(t))
+
+if __name__ == "__main__":
+    main()
