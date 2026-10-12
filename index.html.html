@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мои проекты</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 720px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #63b3ed, #4299e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #94a3b8;
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .file-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .file-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 14px;
+            padding: 1.1rem 1.4rem;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            text-decoration: none;
+            color: #e2e8f0;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .file-card:hover {
+            background: #243449;
+            border-color: #4299e1;
+            transform: translateX(6px);
+            box-shadow: 0 8px 24px rgba(66, 153, 225, 0.15);
+        }
+
+        .file-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, #2b6cb0, #4299e1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .file-info {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .file-name {
+            font-weight: 600;
+            font-size: 1rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .file-path {
+            font-size: 0.8rem;
+            color: #64748b;
+            margin-top: 3px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .arrow {
+            color: #64748b;
+            font-size: 1.2rem;
+            transition: 0.2s;
+        }
+
+        .file-card:hover .arrow {
+            color: #4299e1;
+            transform: translateX(4px);
+        }
+
+        .footer {
+            margin-top: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📁 Мои проекты</h1>
+        <p class="subtitle">Выберите файл для открытия</p>
+
+        <div class="file-list">
+            <a class="file-card" href="QWEN_Ai.html" target="_blank" rel="noopener">
+                <div class="file-icon">🤖</div>
+                <div class="file-info">
+                    <div class="file-name">QWEN_Ai.html</div>
+                    <div class="file-path">Локальный файл</div>
+                </div>
+                <span class="arrow">→</span>
+            </a>
+
+            <a class="file-card" href="deepseek_html_20261012_d141e.html" target="_blank" rel="noopener">
+                <div class="file-icon">🧠</div>
+                <div class="file-info">
+                    <div class="file-name">deepseek_html_20261012_d141e...</div>
+                    <div class="file-path">Локальный файл</div>
+                </div>
+                <span class="arrow">→</span>
+            </a>
+
+            <a class="file-card" href="ГигаЧат — русскоязычная нейросеть.html" target="_blank" rel="noopener">
+                <div class="file-icon">💬</div>
+                <div class="file-info">
+                    <div class="file-name">ГигаЧат — русскоязычная нейросеть.html</div>
+                    <div class="file-path">Локальный файл</div>
+                </div>
+                <span class="arrow">→</span>
+            </a>
+        </div>
+
+        <div class="footer">Всего файлов: 3</div>
+    </div>
+
+    <script>
+        // Проверка доступности файлов (опционально)
+        document.querySelectorAll('.file-card').forEach(card => {
+            const href = card.getAttribute('href');
+            fetch(href, { method: 'HEAD' })
+                .then(res => {
+                    if (!res.ok) {
+                        card.style.opacity = '0.5';
+                        card.style.pointerEvents = 'none';
+                        card.querySelector('.file-path').textContent = '⚠️ Файл не найден';
+                    }
+                })
+                .catch(() => {
+                    // Если fetch не работает (открытие через file://), просто игнорируем
+                });
+        });
+    </script>
+</body>
+</html>
